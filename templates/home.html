@@ -1,16 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
     <h1>this is homepage</h1>
     {% for kitap in kitaplar %}
+    <div class="maincontainer">
     <img src="{{kitap.image.url}}" alt="{{kitap.book_name}}">
-    <h1>{{kitap.book_name}}</h1>
-    <p>{{kitap.description}}</p>
+    <div class="mycontainer">
+        <h1>{{kitap.book_name}}</h1>
+        <p>{{kitap.description|slice:100}}</p>
+        <a href="{% url 'detail' kitap.id %}"><button >Подробнее</button></a>
+    </div>
+</div>
     {% endfor %}
 </body>
 </html>
